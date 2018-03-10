@@ -30,7 +30,7 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/books", method = RequestMethod.POST)
-	public ResponseEntity<?> createBook(@Valid @RequestBody CreateBookDTO book) {
+	public ResponseEntity<?> createBook(@RequestBody CreateBookDTO book) {
 		BookDTO dto = bookService.createBookForRating(book);
 		HttpHeaders responseHeaders = new HttpHeaders();
 		URI newBookUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId())
@@ -46,7 +46,7 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/books/{bookId}", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateBook(@Valid @RequestBody UpdateBookDTO book, @PathVariable Long bookId) {
+	public ResponseEntity<?> updateBook(@RequestBody UpdateBookDTO book, @PathVariable Long bookId) {
 		bookService.updateBook(book);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

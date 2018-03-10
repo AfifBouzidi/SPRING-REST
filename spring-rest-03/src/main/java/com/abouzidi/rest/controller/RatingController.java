@@ -1,6 +1,5 @@
 package com.abouzidi.rest.controller;
 
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import com.abouzidi.rest.dto.CreateRatingDTO;
 import com.abouzidi.rest.dto.RatingDTO;
 import com.abouzidi.rest.service.RatingService;
@@ -22,7 +22,7 @@ public class RatingController {
 	private RatingService ratingService;
 	
 	@RequestMapping(value = "/books/{bookId}/ratings", method = RequestMethod.POST)
-	public ResponseEntity<?> createRating(@PathVariable Long bookId, @Valid @RequestBody CreateRatingDTO rating) {
+	public ResponseEntity<?> createRating(@PathVariable Long bookId, @RequestBody CreateRatingDTO rating) {
 		rating.setBookId(bookId);
 		RatingDTO ratingDTO = ratingService.createRating(rating);
 		HttpHeaders responseHeaders = new HttpHeaders();
