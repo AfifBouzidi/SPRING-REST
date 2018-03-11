@@ -26,7 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 				.antMatchers("/**", "/swagger-ui/**", "/api-docs/**").permitAll().antMatchers("/books/**")
 				.authenticated().and().httpBasic().realmName("Rating Book").and().csrf().disable();
